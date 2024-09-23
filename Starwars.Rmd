@@ -1,0 +1,12 @@
+```{r load-packages, message=FALSE}
+library(tidyverse)
+starwars %>% 
+  select(name, height) %>% 
+  mutate(height_group = case_when(
+    height < 100 ~ "Extremely short",
+    height < 150 ~ "Short",
+    height < 200 ~ "Tall",
+    height > 200 ~ "Extremely tall",
+    TRUE ~ "Unknown")) %>% 
+  group_by(height_group) %>% arrange(height)
+```
